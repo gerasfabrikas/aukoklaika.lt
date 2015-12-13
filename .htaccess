@@ -1,0 +1,19 @@
+Options +FollowSymLinks +Indexes
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)$ $1 [QSA,L]
+
+
+RewriteRule ^stokojantysis/(.*)$ index.php?p=stokojantysis&id=$1  [QSA]
+RewriteRule ^kuratorius/(.*)$ index.php?p=kuratorius&id=$1  [QSA]
+RewriteRule ^tinklo-atstovas/(.*)$ /index.php?p=tinklo-atstovas&id=$1  [QSA]
+RewriteRule ^poreikiai/psl/(.*)$ index.php?p=poreikiai&page=$1  [QSA]
+RewriteRule ^poreikiai/id/(.*)$ index.php?p=poreikiai&needid=$1  [QSA]
+RewriteRule ^poreikiai/(.*)/psl/(.*)$ index.php?p=poreikiai&catslug=$1&page=$2  [QSA]
+RewriteRule ^poreikiai/(.*)$ index.php?p=poreikiai&catslug=$1  [QSA]
+RewriteRule ^poreikiai/$ /index.php?p=poreikiai  [QSA]
+RewriteRule ^naujienos/psl/(.*)$ index.php?p=naujienos&page=$1  [QSA]
+RewriteRule ^naujienos/(.*)$ index.php?p=naujienos&blogid=$1  [QSA]
+RewriteRule ^(.*)$ index.php?p=puslapis&pageslug=$1  [QSA]
