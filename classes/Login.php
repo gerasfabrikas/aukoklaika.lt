@@ -641,7 +641,7 @@ class Login
         $mail->set('CharSet', CHARSET);
 
         $link    = EMAIL_PASSWORDRESET_URL.'?user_name='.urlencode($user_name).'&verification_code='.urlencode($user_password_reset_hash);
-        $mail->Body = EMAIL_PASSWORDRESET_CONTENT . ' ' . $link;
+        $mail->Body = EMAIL_PASSWORDRESET_CONTENT . "\n\n" . $link;
 
         if(!$mail->Send()) {
             $this->errors[] = $this->lang['Password mail not sent'] . $mail->ErrorInfo;
