@@ -53,7 +53,7 @@ if($page_slug == 'kontaktai' or $page_slug == 'tapkg' or $page_slug == 'gauk' or
 	if(isset($_POST['code']) and (strtoupper($_POST["code"]) == $_SESSION['captcha'])) :
 		if(isset($_POST['name']) and isset($_POST['elp']) and isset($_POST['desc'])) :
 			if($_POST['name'] != '' and $_POST['elp'] !='' and $_POST['desc'] != '') :
-				if(myMail('marija@pagalbadaiktais.lt', $_POST['name'].' ('.$citiesList[$_POST['sav']].') nori '.$_POST['nor'], $_POST['desc'], $from = $_POST['elp']))
+				if(myMail('marija@aukokdaiktus.lt', $_POST['name'].' ('.$citiesList[$_POST['sav']].') nori '.$_POST['nor'], $_POST['desc'], $from = $_POST['elp']))
 				err('Jūsų žinutė išsiųsta', 'green');
 				else err('Klaida siunčiant žinutę', 'red');
 			else : err('Užpildykite visus laukelius', 'red');

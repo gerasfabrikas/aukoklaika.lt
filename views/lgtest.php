@@ -27,12 +27,12 @@ $logoutUrl = $facebook->getLogoutUrl();
     echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
     $user = null;
 $loginUrl = $facebook->getLoginUrl(array(
-   'next'=>'http://pagalbadarbais.lt/views/lgtest.php'
+   'next'=>'http://aukoklaika.lt/views/lgtest.php'
 ));
   }
 }
 $loginUrl = $facebook->getLoginUrl(array(
-   'next'=>'http://pagalbadarbais.lt/views/lgtest.php'
+   'next'=>'http://aukoklaika.lt/views/lgtest.php'
 ));
 ?>
 

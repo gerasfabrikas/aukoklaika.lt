@@ -88,42 +88,24 @@ $srch = ( (isset($_GET['s']) and $_GET['s'] != '' ) ? "AND need_name LIKE '%".$_
 
 <!-- SIDEBAR -->
 </div><div class="inline sidebar">
-	<a href="https://www.aukok.lt/projektai/pagalbadaiktais-lt" target="_blank"><div class="sidehead remti"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paremk projektą&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i></div></a>
+	<a href="https://www.aukok.lt/projektai/aukokdaiktus-lt" target="_blank"><div class="sidehead remti"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paremk projektą&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i></div></a>
+
+	<a href="http://www.aukok.lt/" target="_blank"><div class="sidehead brothersiteaukok">&nbsp;</div></a>
+	<a href="http://www.aukokdaiktus.lt/" target="_blank"><div class="sidehead brothersite">&nbsp;</div></a>
+
 	<div class="facebookNews">
 		<div class="sidehead"><i class="fa fa-facebook-square fa-lg"></i> Naujienos</div>
-		<?php
-
-		$fbdata = getRow('fbcache', "id = $fbsite AND updated > DATE_SUB(NOW(), INTERVAL 30 MINUTE) ");
-		if($fbdata) : $fblist = $fbdata['content'];
-		else :
-            require (ROOT_PATH . "libraries" . DIRECTORY_SEPARATOR . "facebook" . DIRECTORY_SEPARATOR . "facebook.php");
-			$facebook = new Facebook(array(
-				'appId'  => '1465543123659209',
-				'secret' => '24983a3c450565771723dc19486b9edc',
-			));
-
-			$pageFeed = $facebook->api($fbid . '/feed');
-
-			$i = 0; $fblist = '';
-			foreach($pageFeed['data'] as $feed) :
-				if(isset($feed['message']) and isset($feed['from']['name']) and $feed['from']['name'] == $fbsender) :
-					$i++;
-					$message = (isset($feed['picture']) ? '<img src="'.$feed['picture'].'" />' : '').'<div id="clamp'.$i.'">'.$feed['message'].'</div>';
-					if(isset($feed['link'])) : $message = $message.'<a target="_blank" href="'.$feed['link'].'"><div class="angles"><i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></div></a>';
-					endif;
-					$fblist .= '<li>'.$message.'</li>';
-				endif;
-				if($i > 2) break;
-			endforeach;
-			mysqli_query($con, "UPDATE fbcache SET content = '$fblist', updated = NOW() WHERE id = $fbsite");
-		endif;
-
-		echo '<ul class="facebookFeed">';
-			echo $fblist;
-		echo '</ul>';
-		?>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=191459097562250";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+		<div class="fb-page facebookFeed" data-href="https://www.facebook.com/aukoktinklas/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/aukoktinklas/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/aukoktinklas/">Aukok daiktus ir laiką</a></blockquote></div>
 	</div>
-    <a href="http://www.pagalbadaiktais.lt/" target="_blank"><div class="sidehead brothersite">&nbsp;</div></a><?php
+    <?php
 
     $draugaipg = getRow('pages', "page_slug = 'draugai' AND page_type = 0 AND deleted = 0");
     if(!empty($draugaipg['page_content'])) {

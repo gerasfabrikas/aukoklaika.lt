@@ -26,7 +26,7 @@ if(isset($_GET['needid'])) :
 	$needyrow = getRow('needy', "user_id = ".$pagerow['need_needy']);
 
 	echo '<div class="ku_img ku_lg">';
-	echo '<img src="http://pagalbadarbais.lt/img/'.$img3.'" alt="nothumb" />';
+	echo '<img src="http://aukoklaika.lt/img/'.$img3.'" alt="nothumb" />';
 	echo '</div><div class="ku_desc">';
 	echo '<h2>'.$pagerow['need_name'].'</h2>';
 	$catrow = getRow('cats', "cat_id = ".$pagerow['need_cat']);
@@ -40,7 +40,7 @@ if(isset($_GET['needid'])) :
 	echo '<div class="persons_left">';
 		echo '<h2>'.$stokoj.'</h2><br>';
 		if(strlen($needyrow['user_thumb']) > 3) getThumbnail('needy', $needyrow['user_id']);
-		else echo '<img src="http://pagalbadarbais.lt/img/'.$img1.'" alt="nothumb" />';
+		else echo '<img src="http://aukoklaika.lt/img/'.$img1.'" alt="nothumb" />';
 		echo '<div class="thumb_desc">';
 		echo '<a href="/stokojantysis/'.$needyrow['user_id'].'">'.$needyrow['user_fname'].' '.$needyrow['user_lname'].' '.$needyrow['user_orgname'].'</a>'.'<br>';
 		$catNrow = getRow('cats', "cat_id = ".$needyrow['user_cat']);
@@ -52,7 +52,7 @@ if(isset($_GET['needid'])) :
 		$pagerow2 = getRow('users', "user_id = ".$needyrow['user_parent']);
 		echo '<a href="/kuratorius/'.$needyrow['user_parent'].'">';
 		if(strlen($pagerow2['user_thumb']) > 3) getThumbnail('users', $pagerow2['user_id']);
-		else echo '<img src="http://pagalbadarbais.lt/img/'.$img2.'" alt="nothumb" />';
+		else echo '<img src="http://aukoklaika.lt/img/'.$img2.'" alt="nothumb" />';
 		echo '<div class="thumb_desc">';
 		echo '<a href="/kuratorius/'.$needyrow['user_parent'].'">'.$parentrow['user_fname'].' '.$parentrow['user_lname'].'</a>';
 		echo '</div>';
@@ -272,7 +272,7 @@ El. Paštas: " . htmlspecialchars($_SESSION['user_email'], ENT_QUOTES, CHARSET) 
 <p>
 Su pagarba,<br />
 Pagalbadarbais.lt administracija<br />
-http://pagalbadarbais.lt<br />
+http://aukoklaika.lt<br />
 </p>
 ";
 			$dovanotojo_laiskas = "
@@ -291,10 +291,10 @@ http://pagalbadarbais.lt<br />
 ".$parentrow['user_email']."<br/>
 </p>
   
-<p>Nuoširdžiai Jūsų, <br />http://pagalbadarbais.lt kolektyvas</p>
+<p>Nuoširdžiai Jūsų, <br />http://aukoklaika.lt kolektyvas</p>
 <br/><br/>
  
-<p>Jūs šį laišką gavote todėl, kad interneto tinklalapyje www.pagalbadarbais.lt išreiškėte norą padėti skurstantiems Lietuvos žmonėms, padovanodami reikalingą darbą, ir įvedėte savo el. pašto adresą. Jei Jūs to nedarėte, vadinasi, kažkas iš Jūsų pažįstamų negražiai pajuokavo. Tokiu atveju prašome pranešti el. paštu: info@pagalbadarbais.lt </p>
+<p>Jūs šį laišką gavote todėl, kad interneto tinklalapyje www.aukoklaika.lt išreiškėte norą padėti skurstantiems Lietuvos žmonėms, padovanodami reikalingą darbą, ir įvedėte savo el. pašto adresą. Jei Jūs to nedarėte, vadinasi, kažkas iš Jūsų pažįstamų negražiai pajuokavo. Tokiu atveju prašome pranešti el. paštu: info@pagalbadarbais.lt </p>
 			";
 			if(myMail($_SESSION['user_email'], 'Pagalbadarbais.lt dėkoja!', $dovanotojo_laiskas)
 			   && myMail($parentrow['user_email'], 'Pagalbadarbais.lt dovanojamas darbas', $kuratoriaus_laiskas)){

@@ -25,7 +25,7 @@ if($page_slug == 'regionuose') :
 	if(isset($_GET['reg']) and $_GET['reg'] < 10) $regionas = $_GET['reg'];
 	else $regionas = 9;
 	
-	echo '<h2>Pagalba visoje Lietuvoje</h2><p>Stipraus savanorių tinklo ir partnerių pagalba, <b>Pagalbadarbais.lt</b> veikla vyksta visoje Lietuvoje.</p>';
+	echo '<h2>Pagalba visoje Lietuvoje</h2><p>Stipraus savanorių tinklo ir partnerių pagalba, <b>Aukoklaika.lt</b> veikla vyksta visoje Lietuvoje.</p>';
 	
 	echo '<h2>'.( (isset($_GET['city']) and $_GET['city'] != 'all' and in_array($_GET['city'], $regionsListChildren[$regionas])) ? $citiesList[$_GET['city']] : $regionsList[$regionas]).'</h2>';
 	
@@ -80,7 +80,7 @@ if($page_slug == 'kontaktai') : ?>
 	<span class="contact-white">Marija Šaraitė</span><br>
 	Projekto vadovė<br>
 	+37067882132<br>
-	marija@pagalbadaiktais.lt
+	marija@aukoklaika.lt
 	</div>
 	<div class="contact-balloon2">
 	<span class="contact-white">VšĮ GEROS VALIOS<br>

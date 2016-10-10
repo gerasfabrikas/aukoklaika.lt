@@ -8,9 +8,9 @@
 define("CHARSET", "UTF-8");
 define("ROOT_PATH", __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 if(isset($_SERVER['APP_ENV']) && (strtolower($_SERVER['APP_ENV']) == 'dev')) {
-    define("ROOT_URL", "http://www.pagalbadarbais.dev/");
+    define("ROOT_URL", "http://www.aukoklaika.dev/");
 } else {
-    define("ROOT_URL", "http://www.pagalbadarbais.lt/");
+    define("ROOT_URL", "http://www.aukoklaika.lt/");
 }
 
 
@@ -43,7 +43,7 @@ define("DB_PASS", "pdarbais");
  * @see php.net/manual/en/function.setcookie.php
  */
 define('COOKIE_RUNTIME', 1209600); // 1209600 seconds = 2 weeks
-define('COOKIE_DOMAIN', '.pagalbadarbais.lt'); // the domain where the cookie is valid for, like '.mydomain.com'
+define('COOKIE_DOMAIN', '.aukoklaika.lt'); // the domain where the cookie is valid for, like '.mydomain.com'
 define('COOKIE_SECRET_KEY', 'pdarbais'); // use to salt cookie content and when changed, can invalidate all databases users cookies
 
 /**
@@ -87,9 +87,9 @@ define("EMAIL_SMTP_ENCRYPTION", 'ssl');
  */
 
 /** absolute URL to register.php, necessary for email password reset links */
-define("EMAIL_PASSWORDRESET_URL", "http://www.pagalbadarbais.lt/password_reset.php");
-define("EMAIL_PASSWORDRESET_FROM", "noreply@pagalbadarbais.lt");
-define("EMAIL_PASSWORDRESET_FROM_NAME", "pagalbadarbais.lt");
+define("EMAIL_PASSWORDRESET_URL", "http://www.aukoklaika.lt/password_reset.php");
+define("EMAIL_PASSWORDRESET_FROM", "noreply@aukoklaika.lt");
+define("EMAIL_PASSWORDRESET_FROM_NAME", "aukoklaika.lt");
 define("EMAIL_PASSWORDRESET_SUBJECT", "Slaptažodžio atkūrimas");
 define("EMAIL_PASSWORDRESET_CONTENT", "Paspauskite šią nuorodą, kad atkurtumėte slaptažodį:");
 
@@ -102,9 +102,9 @@ define("EMAIL_PASSWORDRESET_CONTENT", "Paspauskite šią nuorodą, kad atkurtum�
  */
 
 /** absolute URL to register.php, necessary for email verification links */
-define("EMAIL_VERIFICATION_URL", "http://www.pagalbadarbais.lt/register.php");
-define("EMAIL_VERIFICATION_FROM", "noreply@pagalbadarbais.lt");
-define("EMAIL_VERIFICATION_FROM_NAME", "pagalbadarbais.lt");
+define("EMAIL_VERIFICATION_URL", "http://www.aukoklaika.lt/register.php");
+define("EMAIL_VERIFICATION_FROM", "noreply@aukoklaika.lt");
+define("EMAIL_VERIFICATION_FROM_NAME", "aukoklaika.lt");
 define("EMAIL_VERIFICATION_SUBJECT", "Paskyros aktyvacija");
 define("EMAIL_VERIFICATION_CONTENT", "Paspauskite šią nuorodą, kad aktyvuotumėte paskyrą:");
 

@@ -530,7 +530,7 @@ function getManagerParent($user) {
 
 // Mail
 
-function myMail($to, $subject, $message, $from = 'noreply@pagalbadaiktais.lt', $fromName = 'pagalbadaiktais.lt') {
+function myMail($to, $subject, $message, $from = 'noreply@aukokdaiktus.lt', $fromName = 'aukokdaiktus.lt') {
 
     $mail = new PHPMailer;
 

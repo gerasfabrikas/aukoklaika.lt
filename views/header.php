@@ -14,7 +14,7 @@ endif;
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>pagalbadarbais.lt</title>
+        <title>aukoklaika.lt</title>
 		<link rel="stylesheet" type="text/css" href="/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/style.css" />
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -114,11 +114,11 @@ endif;
 	<?php if(isset($_GET['pageslug']) and $_GET['pageslug'] != '' and isset($pgmenu[$father])) : ?>
 	<div class="pagebanner darbais">
 		<div class="social">
-			<a class="fb" target="_blank" href="https://www.facebook.com/pagalbadaiktais/"><i class="fa fa-facebook"></i></a>
+			<a class="fb" target="_blank" href="https://www.facebook.com/aukoktinklas/"><i class="fa fa-facebook"></i></a>
 			<a class="tw" target="_blank" href="http://www.linkedin.com/company/pagalbadaiktais-lt"><i class="fa fa-linkedin"></i></a>
 		</div>
 		<div class="pgtitles">
-		<img src="http://pagalbadarbais.lt/img/p<?php echo $father; ?>.png" alt= "pglogo" />
+		<img src="http://aukoklaika.lt/img/p<?php echo $father; ?>.png" alt= "pglogo" />
 		<h2><?php echo $pgmenu[$father]; ?></h2>
 		</div>
 		<div class="submenu">
@@ -142,18 +142,18 @@ endif;
 
 	<div class="pagebanner darbais">
 		<div class="social">
-			<a class="fb" target="_blank" href="https://www.facebook.com/pagalbadaiktais/"><i class="fa fa-facebook"></i></a>
+			<a class="fb" target="_blank" href="https://www.facebook.com/aukoktinklas/"><i class="fa fa-facebook"></i></a>
 			<a class="tw" target="_blank" href="http://www.linkedin.com/company/pagalbadaiktais-lt"><i class="fa fa-linkedin"></i></a>
 		</div>
 		<div class="pgtitles">
-		<img src="http://pagalbadarbais.lt/img/fu_<?php echo $_GET['p']; ?>.png" alt= "pglogo" />
+		<img src="http://aukoklaika.lt/img/fu_<?php echo $_GET['p']; ?>.png" alt= "pglogo" />
 		<h2><?php echo $fumenu[$_GET['p']]; ?></h2>
 		</div>
 	</div>
 	<?php else : ?>
 	<div class="banner darbais" style="background-image: url('img/head1.jpg');">
 		<div class="social">
-			<a class="fb" target="_blank" href="https://www.facebook.com/pagalbadaiktais/"><i class="fa fa-facebook"></i></a>
+			<a class="fb" target="_blank" href="https://www.facebook.com/aukoktinklas/"><i class="fa fa-facebook"></i></a>
 			<a class="tw" target="_blank" href="http://www.linkedin.com/company/pagalbadaiktais-lt"><i class="fa fa-linkedin"></i></a>
 		</div>
 		<div class="counter">Nuo portalo veiklos pradžios atlikta <span class="cnumber"><?php echo countData('needs', 'need_full = 1 AND need_type = 1 AND deleted = 0'); ?></span> gerų darbų</div>

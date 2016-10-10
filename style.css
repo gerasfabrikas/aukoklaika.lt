@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Dosis:400,600&subset=latin,latin-ext);
+@import url(//fonts.googleapis.com/css?family=Dosis:400,600&subset=latin,latin-ext);
 
 body {font: 16px/18px 'Dosis'; color: #666;}
 
@@ -59,8 +59,8 @@ label {width: 200px; display: inline-block;}
 
 /* Header */
 
-.header .left {height: 100px; background: url('/img/logodaiktais.png') no-repeat left center;}
-.header.darbais .left {background-image: url('/img/logodarbais.png');}
+.header .left {height: 100px; background: url('/img/logoaukokdaiktus.png') no-repeat left center;}
+.header.darbais .left {background-image: url('/img/logoaukoklaika.png');}
 
 .banner {display: block; height: 290px; border-top: 3px solid #9acde8; margin-top: 0; margin-bottom: 0;}
 .banner {background: url('/img/ban-daiktais.jpg') no-repeat center center;}
@@ -127,8 +127,10 @@ transition: background-size 0.1s ease-in;
 .pagination .current a, .pagination .current a:hover {background: #0090c4; color: #fff;}
 .darbais .pagination .current a, .darbais .pagination .current a:hover {background: #4bb227;}
 .sidehead.remti {background-color: #f16364; position: static; background-image: url('/img/refl-black.png'); padding: 12px 0; margin-bottom: 32px;}
-.sidehead.brothersite {position: static; background-image: url('/img/brothersite2.png'); padding: 12px 0; margin: 32px 0;}
-.darbais .sidehead.brothersite {background-image: url('/img/brothersite1.png');}
+.sidehead.brothersite {position: static; background-image: url('/img/brotherlaika.png'); background-size: auto 35px; padding: 12px 0; margin: 32px 0;}
+.darbais .sidehead.brothersite {background-image: url('/img/brotherdaiktus.png');}
+.sidehead.brothersiteaukok {position: static; background-image: url('/img/logoaukok.png'); background-size: auto 40px; padding: 12px 0; margin: 32px 0;}
+.darbais .sidehead.brothersiteaukok {background-image: url('/img/logoaukok.png');}
 
 /* Thumbnails */
 .sitethumb {display: inline-block; height: 60px; width: 60px; background: #ddd; background-repeat: no-repeat; background-position: center center; vertical-align: top;}
