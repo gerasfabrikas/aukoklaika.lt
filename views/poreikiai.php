@@ -74,16 +74,6 @@ if(isset($_GET['needid'])) :
 		$regsuc = false;
 
 		if(isset($_POST['make_user'])) :
-
-            // @todo: remove this errors part...
-            if(isset($_SERVER['APP_ENV']) && (strtolower($_SERVER['APP_ENV']) == 'dev')) {
-                error_reporting(E_ALL | E_STRICT);
-                ini_set('display_errors','on');
-            } else {
-                error_reporting(0);
-                ini_set('display_errors',false);
-            }
-
 			$registration = new Registration();
 
 			// show negative messages

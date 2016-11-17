@@ -1,13 +1,4 @@
 <?php
-// @todo: remove this errors part...
-if(isset($_SERVER['APP_ENV']) && (strtolower($_SERVER['APP_ENV']) == 'dev')) {
-    error_reporting(E_ALL | E_STRICT);
-    ini_set('display_errors','on');
-} else {
-    error_reporting(0);
-    ini_set('display_errors',false);
-}
-
 require ROOT_PATH . "libraries" . DIRECTORY_SEPARATOR . "facebook" . DIRECTORY_SEPARATOR . "facebook.php";
 $facebook = new Facebook(array(
 	'appId'  => '1465543123659209',
