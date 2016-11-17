@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+git push;
+ssh aukok@gerasfabrikas.lt -p 20020 /bin/bash << EOF
+    cd www/aukoklaika.lt;
+    git pull;
+    git merge origin/develop;
+    git push;
+    echo "Deployed!";
+    echo "";
+EOF
