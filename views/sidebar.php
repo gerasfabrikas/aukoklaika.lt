@@ -83,21 +83,21 @@ endif;
 
 if($page_slug == 'padek') : ?>
 	<div class="sid-back"><h2>Kodėl gera padėti kitiems?</h2>
-	<p>Pagalbadarbais.lt – tai <span style="color: #fff;">gerumo tinklas visoje Lietuvoje</span>, internetinis gerų darbų ir informavimo apie juos centras.</p>
+	<p>Auokoklaika.lt – tai <span style="color: #fff;">gerumo tinklas visoje Lietuvoje</span>, internetinis gerų darbų ir informavimo apie juos centras.</p>
 
-	<p>Pagalbadarbais.lt  – tai interneto <span style="color: #fff;">vartai, jungiantys galinčius suteikti pagalbą</span> ir tuos, kuriems ši pagalba yra labai reikalinga.</p>
+	<p>Auokoklaika.lt  – tai interneto <span style="color: #fff;">vartai, jungiantys galinčius suteikti pagalbą</span> ir tuos, kuriems ši pagalba yra labai reikalinga.</p>
 
-	<p>Pagalbadarbais.lt <span style="color: #fff;">niekada neužsidaro</span>. Jis registruoja Jūsų gerus darbus 24 valandas per parą, 7 dienas per savaitę.</p>
+	<p>Auokoklaika.lt <span style="color: #fff;">niekada neužsidaro</span>. Jis registruoja Jūsų gerus darbus 24 valandas per parą, 7 dienas per savaitę.</p>
 
 	<p>Kasdien čia užregistruojami nauji dalyviai, kuriems labai reikalinga pagalba, kasdien čia apsilanko norintys padėti, o jau atlikę gerą darbą apsilanko ir vėl, nes <span style="color: #fff;">gera žinoti, kad gali padėti sunkiau gyvenantiems</span>.</p>
  
-	<p>Kiekvienam norinčiam pasidalinti gerumu padedant Pagalbadarbais.lt  suteikia šią galimybę!</p>
+	<p>Kiekvienam norinčiam pasidalinti gerumu padedant Auokoklaika.lt suteikia šią galimybę!</p>
 	</div>
 <?php
 endif;
 
 if($page_slug == 'apie') : ?>
-	<div class="sid-back"><h2>Pagalbadarbais.lt – tai</h2>
+	<div class="sid-back"><h2>Auokoklaika.lt – tai</h2>
 		<p><span style="color: #fff;">įrankis</span> nevyriausybinėms organizacijoms efektyviai ieškoti savanorių pagal konkrečius poreikius;</p>
 		<p>naujas <span style="color: #fff;">iššūkis</span> valstybiniam sektoriui prisitraukti pagalbos savanoriškais darbais iš atsakingų piliečių;</p>
 		<p><span style="color: #fff;">galimybė</span> sunkiau gyvenantiems žmonėms ieškoti pagalbos darbuose, kurių patys negeba atlikti ar neturi tam galimybių.</p>

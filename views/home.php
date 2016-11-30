@@ -1,9 +1,4 @@
 <?php
-// FACEBOOK SETUP
-$fbsite = 1;
-$fbid = '283520278441';
-$fbsender = 'Pagalbadaiktais.lt';
-
 // Filters
 $filterCat = ( (isset($_GET['fc']) and is_numeric($_GET['fc']) and $_GET['fc'] > 0) ? 'AND (needs.need_cat = '.$_GET['fc'].' OR needs.need_subcat = '.$_GET['fc'].')' : '' );
 if(isset($_GET['fci']) and is_numeric($_GET['fci'])) :
@@ -66,7 +61,25 @@ $srch = ( (isset($_GET['s']) and $_GET['s'] != '' ) ? "AND need_name LIKE '%".$_
 
 <ul class="poreikiailist">
 <?php
-	$where = "SELECT need_id, need_name, cat_name, cat_id, user_city, need_regdate, a.deleted AS deleted FROM (SELECT need_id, need_name, cat_name, cat_id, need_type, need_needy, need_regdate, needs.deleted AS deleted FROM needs INNER JOIN cats ON needs.need_cat = cats.cat_id WHERE needs.need_type = $fbsite AND needs.need_full=0 AND needs.need_expires > NOW() AND needs.deleted = 0 $filterCat) a INNER JOIN needy ON a.need_needy = needy.user_id WHERE a.need_type = $fbsite $filterCity $filterStok $srch ORDER BY need_id DESC";
+	$where = "SELECT need_id, need_name, cat_name, cat_id, user_city, need_regdate, a.deleted AS deleted 
+              FROM (
+                  SELECT need_id, need_name, cat_name, cat_id, need_type, need_needy, need_regdate, needs.deleted AS deleted 
+                  FROM needs 
+                  INNER JOIN cats 
+                    ON needs.need_cat = cats.cat_id 
+                  WHERE needs.need_type = 1 
+                  AND needs.need_full=0 
+                  AND needs.need_expires > NOW() 
+                  AND needs.deleted = 0 $filterCat
+              ) a 
+              INNER JOIN needy 
+                ON a.need_needy = needy.user_id 
+              WHERE a.need_type = 1 
+              $filterCity 
+              $filterStok 
+              $srch 
+              ORDER BY need_id DESC";
+
 	$c = 0;
 	if(pageNum() != 0) :
 	foreach(listData(false, false, pageNum(), $where, 15) as $pdata) :

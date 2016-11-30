@@ -538,7 +538,7 @@ function logEmailMessage($from, $to, $subject, $message)
 }
 
 // Mail
-function myMail($to, $subject, $message, $from = 'noreply@aukokdaiktus.lt', $fromName = 'aukokdaiktus.lt') {
+function myMail($to, $subject, $message, $from = 'noreply@aukoklaika.lt', $fromName = 'aukoklaika.lt') {
 
     logEmailMessage($from, $to, $subject, $message);
     if (isDevelopmentEnvironment()){
