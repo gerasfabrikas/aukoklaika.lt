@@ -256,7 +256,7 @@ Adresas: " . htmlspecialchars($_SESSION['user_address'], ENT_QUOTES, CHARSET) . 
 Telefonas: +" . htmlspecialchars($_SESSION['user_phone'], ENT_QUOTES, CHARSET) . "<br/>
 El. Paštas: " . htmlspecialchars($_SESSION['user_email'], ENT_QUOTES, CHARSET) . "
 </p>
-<p>Dovanos aprašymas: " . htmlspecialchars((isset($_POST['need_full_descr']) ? $_POST['need_full_descr'] : '-'), ENT_QUOTES, CHARSET) . "</p>
+<p>Dovanos aprašymas: " . htmlspecialchars((isset($_POST['need_full_desc']) ? $_POST['need_full_desc'] : '-'), ENT_QUOTES, CHARSET) . "</p>
 <p>Prašome susisiekti su dovanotoju ir sutarti dėl dovanos perdavimo.</p>
 <br />
 <p>
