@@ -52,24 +52,24 @@ class Registration
         if (isset($_POST["register"])) {
 
             $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat'], $_POST["captcha"], (isset($_POST["ag"]) ? 1 : 0),
-				array(
-					'user_person' => $_POST['user_person'],
-					'user_fname' => $_POST['user_fname'],
-					'user_lname' => $_POST['user_lname'],
-					'user_orgname' => $_POST['user_orgname'],
-					'user_legalstatus' => $_POST['user_legalstatus'],
-					'user_code1' => $_POST['user_code1'],
-					'user_code2' => $_POST['user_code2'],
-					'user_reg' => $_POST['user_reg'],
-					'user_address' => $_POST['user_address'],
-					'user_region' => $_POST['user_region'],
-					'user_city' => $_POST['user_city'],
-					'user_phone' => $_POST['user_phone'],
-					'user_desc' => $_POST['user_desc'],
-					'user_thumb' => $_FILES['user_thumb'],
-					'user_subscribed' => (isset($_POST['user_subscribed']) ? 1 : 0),
-					'user_acctype' => 0,
-				)
+                array(
+                    'user_person'       => (int) $_POST['user_person'],
+                    'user_fname'        => $_POST['user_fname'],
+                    'user_lname'        => $_POST['user_lname'],
+                    'user_orgname'      => $_POST['user_orgname'],
+                    'user_legalstatus'  => (int) $_POST['user_legalstatus'],
+                    'user_code1'        => $_POST['user_code1'],
+                    'user_code2'        => $_POST['user_code2'],
+                    'user_reg'          => $_POST['user_reg'],
+                    'user_address'      => $_POST['user_address'],
+                    'user_region'       => (int) $_POST['user_region'],
+                    'user_city'         => (int) $_POST['user_city'],
+                    'user_phone'        => $_POST['user_phone'],
+                    'user_desc'         => $_POST['user_desc'],
+                    'user_thumb'        => $_FILES['user_thumb'],
+                    'user_subscribed'   => (isset($_POST['user_subscribed']) ? 1 : 0),
+                    'user_acctype'      => 0,
+                )
 			);
         // if we have such a GET request, call the verifyNewUser() method
         } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
@@ -173,29 +173,40 @@ class Registration
                 $user_activation_hash = sha1(uniqid(mt_rand(), true));
 
                 // write new users data into database
-                $query_new_user_insert = $this->db_connection->prepare('INSERT INTO users (user_name, user_password_hash, user_email, user_activation_hash, user_registration_ip, user_registration_datetime, user_person, user_fname, user_lname, user_orgname, user_legalstatus, user_code1, user_code2, user_reg, user_address, user_region, user_city, user_phone, user_desc, user_subscribed, user_acctype) VALUES(:user_name, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now(), :user_person, :user_fname, :user_lname, :user_orgname, :user_legalstatus, :user_code1, :user_code2, :user_reg, :user_address, :user_region, :user_city, :user_phone, :user_desc, :user_subscribed, :user_acctype)');
-                $query_new_user_insert->bindValue(':user_name', $user_name, PDO::PARAM_STR);
-                $query_new_user_insert->bindValue(':user_password_hash', $user_password_hash, PDO::PARAM_STR);
-                $query_new_user_insert->bindValue(':user_email', $user_email, PDO::PARAM_STR);
-                $query_new_user_insert->bindValue(':user_activation_hash', $user_activation_hash, PDO::PARAM_STR);
-                $query_new_user_insert->bindValue(':user_registration_ip', $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
+                $query = "INSERT INTO users (
+                            user_name, user_password_hash, user_email, user_activation_hash, user_registration_ip, 
+                            user_registration_datetime, user_person, user_fname, user_lname, user_orgname, user_legalstatus, 
+                            user_code1, user_code2, user_reg, user_address, user_region, user_city, user_phone, user_desc, 
+                            user_subscribed, user_acctype
+                          ) 
+                          VALUES (
+                            :user_name, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now(), 
+                            :user_person, :user_fname, :user_lname, :user_orgname, :user_legalstatus, :user_code1, :user_code2, 
+                            :user_reg, :user_address, :user_region, :user_city, :user_phone, :user_desc, :user_subscribed, 
+                            :user_acctype
+                          )";
+                $query_new_user_insert = $this->db_connection->prepare($query);
+                $query_new_user_insert->bindValue(':user_name', $user_name);
+                $query_new_user_insert->bindValue(':user_password_hash', $user_password_hash);
+                $query_new_user_insert->bindValue(':user_email', $user_email);
+                $query_new_user_insert->bindValue(':user_activation_hash', $user_activation_hash);
+                $query_new_user_insert->bindValue(':user_registration_ip', $_SERVER['REMOTE_ADDR']);
 
-				$query_new_user_insert->bindValue(':user_person', $user_data['user_person'], PDO::PARAM_INT);
-				$query_new_user_insert->bindValue(':user_fname', $user_data['user_fname'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_lname', $user_data['user_lname'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_orgname', $user_data['user_orgname'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_legalstatus', $user_data['user_legalstatus'], PDO::PARAM_INT);
-				$query_new_user_insert->bindValue(':user_code1', $user_data['user_code1'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_code2', $user_data['user_code2'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_reg', $user_data['user_reg'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_address', $user_data['user_address'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_region', $user_data['user_region'], PDO::PARAM_INT);
-				$query_new_user_insert->bindValue(':user_city', $user_data['user_city'], PDO::PARAM_INT);
-				$query_new_user_insert->bindValue(':user_phone', $user_data['user_phone'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_desc', $user_data['user_desc'], PDO::PARAM_STR);
-				//$query_new_user_insert->bindValue(':user_thumb', $user_data['user_thumb'], PDO::PARAM_STR);
-				$query_new_user_insert->bindValue(':user_subscribed', $user_data['user_subscribed'], PDO::PARAM_INT);
-				$query_new_user_insert->bindValue(':user_acctype', $user_data['user_acctype'], PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_person', $user_data['user_person'], \PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_fname', $user_data['user_fname']);
+                $query_new_user_insert->bindValue(':user_lname', $user_data['user_lname']);
+                $query_new_user_insert->bindValue(':user_orgname', $user_data['user_orgname']);
+                $query_new_user_insert->bindValue(':user_legalstatus', $user_data['user_legalstatus'], \PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_code1', $user_data['user_code1']);
+                $query_new_user_insert->bindValue(':user_code2', $user_data['user_code2']);
+                $query_new_user_insert->bindValue(':user_reg', $user_data['user_reg']);
+                $query_new_user_insert->bindValue(':user_address', $user_data['user_address']);
+                $query_new_user_insert->bindValue(':user_region', $user_data['user_region'], \PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_city', $user_data['user_city'], \PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_phone', $user_data['user_phone']);
+                $query_new_user_insert->bindValue(':user_desc', $user_data['user_desc']);
+                $query_new_user_insert->bindValue(':user_subscribed', $user_data['user_subscribed'], \PDO::PARAM_INT);
+                $query_new_user_insert->bindValue(':user_acctype', $user_data['user_acctype'], \PDO::PARAM_INT);
 
                 $query_new_user_insert->execute();
 
