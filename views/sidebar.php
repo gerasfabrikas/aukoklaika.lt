@@ -14,21 +14,26 @@ if($page_slug == 'regionuose') :
     }
 
 		if(isset($regionas)) : ?>
-		<form action="" method="GET">
+		<form action="" method="GET" id="region-form">
 			<input type="hidden" name="p" value="puslapis" />
 			<input type="hidden" name="pageslug" value="regionuose" />
-			<select name="reg" data-placeholder="Apskritis" class="slickSelect">
-			<?php foreach($regionsList as $key => $region) echo '<option '.($regionas == $key ? 'selected="selected"' : '').' value="'.$key.'">'.$region.'</option>'; ?>
-			</select>
-			<select name="city" data-placeholder="Savivaldybė" class="slickSelect">
-				<option value="all">Visos savivaldybės</option>
-				<?php foreach($regionsListChildren[$regionas] as $cityid) echo '<option '.((isset($_GET['city']) and $_GET['city'] == $cityid) ? 'selected="selected"' : '').' value="'.$cityid.'">'.$citiesList[$cityid].'</option>'; ?>
-			</select><br>
-			<select name="ptype" class="slickSelect">
-				<option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 2) ? 'selected="selected"' : ''); ?> value="2">Kuratoriai</option>
-				<option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'selected="selected"' : ''); ?> value="1">Stokojantieji</option>
-			</select>
-			<input type="submit" value="Rodyti" />
+            <select name="reg" data-placeholder="Apskritis" class="slickSelect" onchange="document.getElementById('region-form').submit()">
+                <?php foreach($regionsList as $key => $region): ?>
+                    <option <?php echo ($regionas == $key ? 'selected="selected"' : '') ?> value="<?php echo $key ?>">
+                        <?php echo $region ?>
+                    </option>
+                <? endforeach; ?>
+            </select>
+
+            <select name="city" data-placeholder="Savivaldybė" class="slickSelect" onchange="document.getElementById('region-form').submit()">
+                <option value="all">Visos savivaldybės</option>
+                <?php foreach($regionsListChildren[$regionas] as $cityid) echo '<option '.((isset($_GET['city']) and $_GET['city'] == $cityid) ? 'selected="selected"' : '').' value="'.$cityid.'">'.$citiesList[$cityid].'</option>'; ?>
+            </select>
+
+            <select name="ptype" class="slickSelect" onchange="document.getElementById('region-form').submit()" style="margin-top:5px;">
+                <option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 2) ? 'selected="selected"' : ''); ?> value="2">Kuratoriai</option>
+                <option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'selected="selected"' : ''); ?> value="1">Stokojantieji</option>
+            </select>
 		</form>		
 		<?php endif;
 	echo '</div></div>';
