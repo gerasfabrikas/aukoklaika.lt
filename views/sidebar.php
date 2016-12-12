@@ -1,7 +1,7 @@
 <?php
 
 
-if ($page_slug == 'regionuose') :
+if($page_slug == 'regionuose') :
 	echo '<div class="sid-back">';
 	echo '<div class="map-form">';
 	if(isset($_GET['reg']) and $_GET['reg'] < 10) $regionas = $_GET['reg'];
@@ -12,35 +12,29 @@ if ($page_slug == 'regionuose') :
     if(is_file($ltMap)) {
         include($ltMap);
     }
-?>
 
-	<?php if (isset($regionas)) : ?>
-		    <form action="" method="GET" id="region-form">
-                <input type="hidden" name="p" value="puslapis" />
-                <input type="hidden" name="pageslug" value="regionuose" />
-                <select name="reg" data-placeholder="Apskritis" class="slickSelect" onchange="document.getElementById('region-form').submit()">
-                    <?php foreach($regionsList as $key => $region): ?>
-                        <option <?php echo ($regionas == $key ? 'selected="selected"' : '') ?> value="<?php echo $key ?>">
-                            <?php echo $region ?>
-                        </option>
-                    <? endforeach; ?>
-                </select>
+		if(isset($regionas)) : ?>
+		<form action="" method="GET">
+			<input type="hidden" name="p" value="puslapis" />
+			<input type="hidden" name="pageslug" value="regionuose" />
+			<select name="reg" data-placeholder="Apskritis" class="slickSelect">
+			<?php foreach($regionsList as $key => $region) echo '<option '.($regionas == $key ? 'selected="selected"' : '').' value="'.$key.'">'.$region.'</option>'; ?>
+			</select>
+			<select name="city" data-placeholder="Savivaldybė" class="slickSelect">
+				<option value="all">Visos savivaldybės</option>
+				<?php foreach($regionsListChildren[$regionas] as $cityid) echo '<option '.((isset($_GET['city']) and $_GET['city'] == $cityid) ? 'selected="selected"' : '').' value="'.$cityid.'">'.$citiesList[$cityid].'</option>'; ?>
+			</select><br>
+			<select name="ptype" class="slickSelect">
+				<option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 2) ? 'selected="selected"' : ''); ?> value="2">Kuratoriai</option>
+				<option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'selected="selected"' : ''); ?> value="1">Stokojantieji</option>
+			</select>
+			<input type="submit" value="Rodyti" />
+		</form>
+		<?php endif;
+	echo '</div></div>';
+endif;
 
-                <select name="city" data-placeholder="Savivaldybė" class="slickSelect" onchange="document.getElementById('region-form').submit()">
-                    <option value="all">Visos savivaldybės</option>
-                    <?php foreach($regionsListChildren[$regionas] as $cityid) echo '<option '.((isset($_GET['city']) and $_GET['city'] == $cityid) ? 'selected="selected"' : '').' value="'.$cityid.'">'.$citiesList[$cityid].'</option>'; ?>
-                </select>
-
-                <select name="ptype" class="slickSelect" onchange="document.getElementById('region-form').submit()">
-                    <option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 2) ? 'selected="selected"' : ''); ?> value="2">Kuratoriai</option>
-                    <option <?php echo ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'selected="selected"' : ''); ?> value="1">Stokojantieji</option>
-                </select>
-		    </form>
-		<?php endif; ?>
-	<?php echo '</div></div>' ?>
-<?php endif; ?>
-
-<?php if($page_slug == 'duk') :
+if($page_slug == 'duk') :
 	echo '<div class="sid-back"><h3 style="margin-top: 20px;">DUK</h3>';
 	echo '<ul class="klausimai">';
 	foreach($pces as $ikey => $item) :
@@ -59,7 +53,7 @@ if($page_slug == 'kontaktai' or $page_slug == 'tapkg' or $page_slug == 'gauk' or
 	if(isset($_POST['code']) and (strtoupper($_POST["code"]) == $_SESSION['captcha'])) :
 		if(isset($_POST['name']) and isset($_POST['elp']) and isset($_POST['desc'])) :
 			if($_POST['name'] != '' and $_POST['elp'] !='' and $_POST['desc'] != '') :
-				if(myMail(EMAIL_DEFAULT_TO, $_POST['name'].' ('.$citiesList[$_POST['sav']].') nori '.$_POST['nor'], $_POST['desc'], $from = $_POST['elp']))
+				if(myMail('marija@aukokdaiktus.lt', $_POST['name'].' ('.$citiesList[$_POST['sav']].') nori '.$_POST['nor'], $_POST['desc'], $from = $_POST['elp']))
 				err('Jūsų žinutė išsiųsta', 'green');
 				else err('Klaida siunčiant žinutę', 'red');
 			else : err('Užpildykite visus laukelius', 'red');
