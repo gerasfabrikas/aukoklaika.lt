@@ -126,7 +126,7 @@ transition: background-size 0.1s ease-in;
 .pagination li a:hover {background: #f6f1ed; color: #0090c4;}
 .pagination .current a, .pagination .current a:hover {background: #0090c4; color: #fff;}
 .darbais .pagination .current a, .darbais .pagination .current a:hover {background: #4bb227;}
-.sidehead.remti {background-color: #f16364; position: static; background-image: url('/img/refl-black.png'); padding: 12px 0; margin-bottom: 32px;}
+.sidehead.remti {position: static; background-image: url('/img/siunciult.png'); background-size: auto 40px; padding: 20px 0 20px 0;}
 .sidehead.brothersite {position: static; background-image: url('/img/brotherlaika.png'); background-size: auto 35px; padding: 12px 0; margin: 32px 0;}
 .darbais .sidehead.brothersite {background-image: url('/img/brotherdaiktus.png');}
 .sidehead.brothersiteaukok {position: static; background-image: url('/img/logoaukok.png'); background-size: auto 40px; padding: 12px 0; margin: 32px 0;}

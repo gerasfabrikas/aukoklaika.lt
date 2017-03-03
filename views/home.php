@@ -101,8 +101,7 @@ $srch = ( (isset($_GET['s']) and $_GET['s'] != '' ) ? "AND need_name LIKE '%".$_
 
 <!-- SIDEBAR -->
 </div><div class="inline sidebar">
-	<a href="https://www.aukok.lt/projektai/aukokdaiktus-lt" target="_blank"><div class="sidehead remti"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paremk projektą&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i></div></a>
-
+    <a href="http://www.siunciu.lt" target="_blank"><div class="sidehead remti"></div></a>
 	<a href="http://www.aukok.lt/" target="_blank"><div class="sidehead brothersiteaukok">&nbsp;</div></a>
 	<a href="http://www.aukokdaiktus.lt/" target="_blank"><div class="sidehead brothersite">&nbsp;</div></a>
 
