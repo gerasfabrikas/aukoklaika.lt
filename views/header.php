@@ -16,7 +16,7 @@ endif;
         <meta charset="utf-8">
         <title>aukoklaika.lt</title>
 		<link rel="stylesheet" type="text/css" href="/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="/style.css" />
+		<link rel="stylesheet" type="text/css" href="/style.css?v=1" />
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/chosen.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
