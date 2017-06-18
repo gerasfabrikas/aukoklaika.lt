@@ -77,15 +77,12 @@ endif;
 
 if($page_slug == 'kontaktai') : ?>
 	<div class="contact-balloon1">
-	<span class="contact-white">Marija Šaraitė</span><br>
-	Projekto vadovė<br>
-	+37067882132<br>
-	marija@aukoklaika.lt
+	    <span class="contact-white">info@aukoklaika.lt</span>
 	</div>
 	<div class="contact-balloon2">
 	<span class="contact-white">VšĮ GEROS VALIOS<br>
 	PROJEKTAI</span><br>
-	NVO Avilys, Gedimino<br>pr. 21, 01103 Vilnius
+	NVO Avilys, Tauro g. 12, <br>01114, Vilnius
 	</div>
 <?php
 endif;
