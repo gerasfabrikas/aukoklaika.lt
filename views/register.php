@@ -113,7 +113,7 @@ if (!$registration->registration_successful && !$registration->verification_succ
 
 	
 	<br>
-	<img class="captcha" src="tools/showCaptcha.php" alt="captcha" />
+	<img class="captcha" src="tools/showCaptcha.php?v=<?php echo uniqid() ?>" alt="captcha" />
 	<br>
 	<label>Įveskite kodą, kurį matote paveikslėlyje<span class="reqfield">*</span></label>
 	<input type="text" name="captcha" required />

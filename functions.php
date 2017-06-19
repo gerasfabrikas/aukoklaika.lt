@@ -518,7 +518,7 @@ function getManagerParent($user) {
 
 function isDevelopmentEnvironment()
 {
-    return (strpos($_SERVER['HTTP_HOST'], '.local') || strpos($_SERVER['HTTP_HOST'], '.dev'));
+	return (strpos($_SERVER['HTTP_HOST'], '.local') || strpos($_SERVER['HTTP_HOST'], '.dev'));
 }
 
 function logEmailMessage($from, $to, $subject, $message, $replyTo)
@@ -542,17 +542,124 @@ function logEmailMessage($from, $to, $subject, $message, $replyTo)
 function myMail($to, $subject, $message, $from = '', $fromName = 'aukoklaika.lt') {
 
     $replyTo = $from;
-    if ($from !== EMAIL_DEFAULT_FROM) {
-        $from = EMAIL_DEFAULT_FROM;
-    }
+    $from = adjustFromEmailAddress($from);
 
     logEmailMessage($from, $to, $subject, $message, $replyTo);
+    return sendEmailMessage($to, $subject, $message, $from, $fromName, $replyTo);
 
-    // DEV environment catches emails via MailHog.
-	// More info: https://github.com/vsi-geros-valios-projektai/pagalbu-tinklapiai-dev-box
-	// if (isDevelopmentEnvironment()){
-	// 		return true;
-	// }
+}
+
+/**
+ * @param $from
+ * @return string
+ */
+function adjustFromEmailAddress($from)
+{
+    $from = ($from !== EMAIL_DEFAULT_FROM) ? EMAIL_DEFAULT_FROM : $from;
+    return $from;
+}
+
+/**
+ * @param $cityId Miesto id iš $citiesList
+ * @param $subject
+ * @param $message
+ * @param string $from
+ * @param array $extraToEmailsOfAdmins
+ * @param string $fromName
+ * @return bool
+ */
+function sendEmailMessageToManagersOfCity($cityId, $subject, $message, $from = '', $extraToEmailsOfAdmins = array(), $fromName = 'aukoklaika.lt') {
+
+	$managersOfCity = getManagersOfCity($cityId);
+
+    $sentAll = array();
+    foreach($managersOfCity as $manager) {
+        if(!$manager->user_email) {
+            continue; // No email address, nowhere to send the email
+        }
+        $sentAll[$manager->user_email] = myMail($manager->user_email, $subject, $message, $from, $fromName);
+    }
+
+    $messageToAdmins = generateMessageForAdmin($message, $sentAll);
+
+    foreach($extraToEmailsOfAdmins as $emailAddress) {
+        if(!$emailAddress) {
+            continue; // No email address, nowhere to send the email
+        }
+        $sentAll[$emailAddress] = myMail($emailAddress, $subject, $messageToAdmins, $from, $fromName);
+    }
+
+    // Lets fail if no email sent at all
+    if(in_array(false, $sentAll) && !in_array(true, $sentAll)) {
+        return false;
+    }
+
+    // All is fine
+    return true;
+
+}
+
+/**
+ * @param $message
+ * @param $sentTo
+ * @return string
+ */
+function generateMessageForAdmin($message, $sentTo)
+{
+    $messageSentEmails = array();
+    $messageNotSentEmails = array();
+
+    foreach($sentTo as $emailAddress => $sentOrNot) {
+        if(true == $sentOrNot) {
+            $messageSentEmails[] = $emailAddress;
+        } else {
+            $messageNotSentEmails[] = $emailAddress;
+        }
+    }
+
+    $messageSentText = $messageSentEmails ? ("<br><br>" . "Išsiųsta:<br>" . implode(", ", $messageSentEmails)) : '';
+    $messageNotSentText = $messageNotSentEmails ? ("<br><br>" . "Nepavyko išsiųsti:<br>" . implode(", ", $messageNotSentEmails)) : '';
+
+    return $message . $messageSentText . $messageNotSentText;
+
+}
+
+function getManagersOfCity($cityId) {
+    $Core = new Core();
+
+    /**
+     * @var \PDO $Pdo
+     */
+    $Pdo = $Core->get('db');
+    $PdoStatement = $Pdo->prepare("SELECT * FROM users WHERE user_city = :user_city AND user_active = :user_active AND user_acctype > :user_acctype_min AND user_acctype < :user_acctype_max");
+    $PdoStatement->bindParam('user_city', $cityId, PDO::PARAM_INT);
+    $PdoStatement->bindValue('user_active', 1, PDO::PARAM_INT);
+    $PdoStatement->bindValue('user_acctype_min', 0, PDO::PARAM_INT);
+    $PdoStatement->bindValue('user_acctype_max', 3, PDO::PARAM_INT);
+    //$PdoStatement->bindValue('user_acctype', 1, PDO::PARAM_INT); // Kuratoriai (aka. Managers)
+    //$PdoStatement->bindValue('user_acctype', 2, PDO::PARAM_INT); // Tinklo kuratoriai (aka. Grid manager)
+    $PdoStatement->execute();
+
+    return $PdoStatement->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+/**
+ * @param $to
+ * @param $subject
+ * @param $message
+ * @param $from
+ * @param $fromName
+ * @param $replyTo
+ * @return bool
+ */
+function sendEmailMessage($to, $subject, $message, $from, $fromName, $replyTo)
+{
+// DEV environment catches emails via MailHog.
+    // More info: https://github.com/vsi-geros-valios-projektai/pagalbu-tinklapiai-dev-box
+    // if (isDevelopmentEnvironment()){
+    // 		return true;
+    // }
 
     $mail = new PHPMailer;
 
@@ -594,12 +701,10 @@ function myMail($to, $subject, $message, $from = '', $fromName = 'aukoklaika.lt'
     $mail->Body = $message;
     $mail->IsHTML(true);
 
-    if(!$mail->Send()) {
+    if (!$mail->Send()) {
         //$this->errors[] = 'Mail not sent' . $mail->ErrorInfo;
         return false;
     } else {
         return true;
     }
 }
-
-?>

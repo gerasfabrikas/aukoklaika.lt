@@ -210,7 +210,7 @@ if(isset($_GET['needid'])) :
 			<input type="hidden" name="user_desc" value="" />
 			<input style="display: none;" type="file" name="user_thumb" id="user_thumb" />
 			<br>
-			<label></label> <img class="cap" src="/tools/showCaptcha.php" alt="captcha" />
+			<label></label> <img class="cap" src="/tools/showCaptcha.php?v=<?php echo uniqid() ?>" alt="captcha" />
 			<br>
 			<label>Įveskite kodą, kurį matote paveikslėlyje<span class="reqfield">*</span></label>
 			<input type="text" name="captcha" required />

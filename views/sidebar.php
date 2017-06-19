@@ -72,7 +72,7 @@ if($page_slug == 'kontaktai' or $page_slug == 'tapkg' or $page_slug == 'gauk' or
 		<label>Vardas ir pavardė<span class="reqfield">*</span></label><input type="text" name="name" value="" /><br>
 		<label>El. paštas<span class="reqfield">*</span></label><input type="text" name="elp" value="" /><br>
 		<label>Žinutė<span class="reqfield">*</span></label><textarea name="desc"></textarea><br>
-		<label></label><img class="cap" src="tools/showCaptcha.php" /><br>
+		<label></label><img class="cap" src="tools/showCaptcha.php?v=<?php echo uniqid() ?>" /><br>
 		<label>Įveskite tekstą, kurį matote paveikslėlyje<span class="reqfield">*</span></label><input type="text" name="code" value="" /><br>
 		<label></label><input type="submit" value="Siųsti" />		
 	</form>
