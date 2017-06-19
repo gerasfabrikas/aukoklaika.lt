@@ -547,9 +547,12 @@ function myMail($to, $subject, $message, $from = '', $fromName = 'aukoklaika.lt'
     }
 
     logEmailMessage($from, $to, $subject, $message, $replyTo);
-    if (isDevelopmentEnvironment()){
-        return true;
-    }
+
+    // DEV environment catches emails via MailHog.
+	// More info: https://github.com/vsi-geros-valios-projektai/pagalbu-tinklapiai-dev-box
+	// if (isDevelopmentEnvironment()){
+	// 		return true;
+	// }
 
     $mail = new PHPMailer;
 
