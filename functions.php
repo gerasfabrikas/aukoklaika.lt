@@ -599,6 +599,43 @@ function sendEmailMessageToManagersOfCity($cityId, $subject, $message, $from = '
 
 }
 
+function sendEmailMessageToUserSelf($userEmail = '', $from = 'info@aukoklaika.lt', $extraToEmailsOfAdmins = array(), $fromName = 'aukoklaika.lt', $skipAdministratorsIfUserEmailed = true) {
+
+    $subject = 'Ačiū, kad kreipiatės';
+    $message = <<<BODY
+Sveiki,<br />
+<br />
+ačiū, kad kreipiatės į Aukoklaika.lt. Jei nesulauksite mūsų savanorių kuratorių atsakymo ar kils papildomų klausimų, rašykite į info@aukoklaika.lt.<br /> 
+<br />
+Pagarbiai<br /> 
+Aukoklaika.lt komanda<br /> 
+BODY;
+
+    $sentAll[$userEmail] = myMail($userEmail, $subject, $message, $from, $fromName);
+
+    // Do not send email copy to administrators if user got the email
+    if($skipAdministratorsIfUserEmailed && !in_array(false, $sentAll) && in_array(true, $sentAll)) {
+        return true;
+    }
+
+    // Send email copy to administrators
+    $messageToAdmins = generateMessageForAdmin($message, $sentAll);
+    foreach($extraToEmailsOfAdmins as $emailAddress) {
+        if(!$emailAddress) {
+            continue; // No email address, nowhere to send the email
+        }
+        $sentAll[$emailAddress] = myMail($emailAddress, $subject, $messageToAdmins, $from, $fromName);
+    }
+
+    // Lets fail if no email sent at all
+    if(in_array(false, $sentAll) && !in_array(true, $sentAll)) {
+        return false;
+    }
+
+    // All is fine
+    return true;
+}
+
 /**
  * @param $message
  * @param $sentTo
