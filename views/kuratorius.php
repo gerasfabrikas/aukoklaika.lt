@@ -25,6 +25,7 @@ echo '<div class="page-con">';
 	foreach($regionsListChildren as $key => $cities) if(in_array($pagerow['user_city'], $cities)) {echo '<a href="/regionuose?p=puslapis&pageslug=regionuose&reg='.$key.'&city=all&ptype=2">'.$regionsList[$key].'</a> &gt; '; $rgn = $key;}
 	if(isset($rgn)) echo '<a href="/regionuose?p=puslapis&pageslug=regionuose&reg='.$rgn.'&city='.$pagerow['user_city'].'&ptype=2">'.$citiesList[$pagerow['user_city']].'</a>';
 	echo '<br>El. paštas: <a href="mailto:'.$pagerow['user_email'].'">'.$pagerow['user_email'].'</a>';
+	echo '<br>Telefono nr.: ' . $pagerow['user_phone'];
 	echo '<br><br>'.$pagerow['user_desc'].'';
 	echo '</div>';
 
