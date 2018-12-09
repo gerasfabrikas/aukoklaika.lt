@@ -33,7 +33,8 @@ if($page_slug == 'regionuose') :
 	$table = ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'needy' : 'users');
 	$onlyactive = ((isset($_GET['ptype']) and $_GET['ptype'] == 1) ? 'AND deleted = 0' : 'AND user_active = 1 AND user_acctype > 0 AND user_acctype < 3');
 	$where = ((isset($_GET['city']) and $_GET['city'] != 'all' and in_array($_GET['city'], $regionsListChildren[$regionas])) ? 'user_city = '.$_GET['city'].' '.$onlyactive : 'user_region = '.$regionas.' '.$onlyactive);
-	$data = listData($table, $where);
+	//$data = listData($table, $where);
+	$data = [];
 	if(count($data) > 0) :
 	echo '<table class="regtable">';
 	foreach($data as $item) :
